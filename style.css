@@ -1,0 +1,238 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+/* Global Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    cursor: none; 
+}
+/* Full Page Cover */
+#cover {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    /*background-color: rgba(255, 255, 250, 0.97); Milky white */ 
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    z-index: 100;
+    clip-path: inset(0 50% 0 50%);
+    transition: clip-path 0.3s ease-out;
+}
+
+/* Logo */
+#logo {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-size: 110%;
+    font-weight: bold;
+}
+
+/* Title */
+#title {
+    font-size: 60px;
+    font-weight: bold;
+    letter-spacing: 3px;
+}
+
+/* Main Content */
+#main-content {
+    height: 200vh;
+    background-color: #111;
+    color: white;
+    display: flex;
+    font-size: 200%;
+}
+.name{
+    font-size: 300%;
+    font-weight: 400;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-family: 'Bebas Neue', sans-serif;
+    line-height: 0.9;
+    z-index: 0;
+}
+.location{
+    position: absolute;
+    bottom: 10%; 
+    left: 5%; 
+    font-family: 'Bebas Neue' , sans-serif;
+}
+
+/* Custom Cursor */
+.cursor {
+    position: fixed;
+    width: 18px;
+    height: 18px;
+    background: yellow; /* Solid yellow color */
+    border-radius: 50%;
+    pointer-events: none; /* Prevents interference */
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+}
+@media (max-width: 768px) {
+    .cursor {
+        display: none;
+    }
+}
+#clock {
+    font-size: 24px;
+    font-weight: bold;
+    font-family: monospace;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: black;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+@media (max-width: 768px) {
+    #clock {
+        font-size: 18px; /* Adjusts size for smaller screens */
+        top: 10px;
+        right: 10px;
+        padding: 8px 12px;
+    }
+}
+
+#middle-dot {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 28px;
+    height: 28px;
+    background-color: yellow;
+    border-radius: 50%;
+    transition: transform 0.2s ease, border 0.2s ease;
+    z-index: 101; /* Higher than #cover (which has z-index: 100) */
+}
+
+#middle-dot:hover {
+    transform: translateX(-50%) scale(1.5);
+    border: 4px solid black;
+    background-color: white;
+}
+.social-icons1 {
+    display: flex;
+    gap: 15px;
+    position: fixed;
+    bottom: 10%;
+    right: 2%;
+    transform: translateX(-50%);
+}
+@media (max-width: 768px) {
+    .social-icons1 {
+        display: none;
+    }
+}
+
+.social-icon {
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: white;
+    border: 2px solid grey;
+    color: black;
+    font-size: 28px;
+    text-decoration: none;
+    transition: background 0.3s ease, color 0.3s ease, border 0.3s ease;
+}
+
+.social-icon:hover {
+    background-color: black;
+    color: white;
+    border: 2px solid grey;
+}
+/* Menu Overlay */
+#menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #1a1a1a;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    opacity: 0;
+    visibility: hidden;
+    z-index: 1000; /* Ensures it covers everything */
+}
+
+/* Show the menu */
+#menu-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Menu Items */
+.menu-item {
+    margin: 20px 0;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.menu-item:hover {
+    color: #cccccc;
+}
+
+/* Middle Dot / Close Button */
+#middle-dot {
+    position: fixed;
+    top: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 22px;
+    height: 22px;
+    background-color: yellow;
+    border-radius: 50%;
+    transition: transform 0.2s ease, border 0.2s ease;
+    z-index: 1100; /* Always stays on top */
+    cursor: pointer;
+}
+
+/* When Menu is Open, Middle Dot Turns into "X" */
+#middle-dot.active {
+    width: auto;
+    height: auto;
+    background: none;
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #cccccc;
+    border-radius: 0;
+    transform: translateX(-50%) scale(1);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    #menu-overlay {
+        font-size: 2rem;
+    }
+}
