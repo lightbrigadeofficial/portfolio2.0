@@ -16,17 +16,20 @@ let scrollSpeed = 0.9;
 
 // Listen for mouse wheel scroll events
 window.addEventListener("wheel", function (event) {
-    // Prevent the default scrolling behavior
-    event.preventDefault();
+    let atBottom = (window.innerHeight + window.scrollY) >= document.body.scrollHeight;
+    let atTop = window.scrollY === 0;
     
-    // Manually control the scrolling behavior with reduced speed
-    window.scrollBy({
-        top: event.deltaY * scrollSpeed, // Adjusts the scroll movement based on speed factor
-        behavior: "smooth" // Enables smooth scrolling
-    });
+    // Only prevent default scrolling when not at the top or bottom
+    if (!atBottom && !atTop) {
+        event.preventDefault();
+        window.scrollBy({
+            top: event.deltaY * scrollSpeed, // Adjusts the scroll movement based on speed factor
+            behavior: "smooth" // Enables smooth scrolling
+        });
+    }
 }, { passive: false }); // Ensures preventDefault() works on some browsers
 
-// Customizing cursor to be transclucent and round
+// Customizing cursor to be translucent and round
 document.addEventListener("DOMContentLoaded", function () {
     const cursor = document.createElement("div");
     cursor.classList.add("cursor");
@@ -59,7 +62,7 @@ function updateClock() {
     let minutes = now.getMinutes().toString().padStart(2, "0");
     let seconds = now.getSeconds().toString().padStart(2, "0");
     
-    document.getElementById("clock").textContent = `Local/${hours}:${minutes}:${seconds}`;
+    document.getElementById("clock").textContent = `Local/ ${hours}:${minutes}:${seconds}`;
 }
 
 // Update the clock every second
@@ -77,3 +80,21 @@ middleDot.addEventListener("click", function () {
     middleDot.classList.toggle("active");   // Turn dot into "X"
     middleDot.textContent = middleDot.classList.contains("active") ? "✕" : ""; // Change content
 });
+
+//
+let isScrolling = false;
+window.addEventListener("wheel", (event) => {
+    if (isScrolling) return;
+    isScrolling = true;
+
+    let sections = document.querySelectorAll(".section");
+    let currentSection = [...sections].findIndex(sec => sec.getBoundingClientRect().top >= 0);
+    
+    if (event.deltaY > 0 && currentSection < sections.length - 1) {
+        sections[currentSection + 1].scrollIntoView({ behavior: "smooth" });
+    } else if (event.deltaY < 0 && currentSection > 0) {
+        sections[currentSection - 1].scrollIntoView({ behavior: "smooth" });
+    }
+
+    setTimeout(() => isScrolling = false, 700); // Adds a small delay to make it feel "resistant"
+}, { passive: false });

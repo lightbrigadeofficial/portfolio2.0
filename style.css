@@ -1,37 +1,43 @@
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cedarville+Cursive&display=swap');
+
 /* Global Reset */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    cursor: none; 
+    cursor: none;
 }
+
+@media (max-width: 768px) {
+    * {
+        cursor: default;
+    }
+}
+
 /* Full Page Cover */
 #cover {
     position: fixed;
-    top: 0;
-    left: 0;
     width: 100%;
-    height: 100vh;
-    /*background-color: rgba(255, 255, 250, 0.97); Milky white */ 
+    height: 100%;
+    /*background-color: rgba(255, 255, 250, 0.97); Milky white */
     background-color: white;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
     z-index: 100;
     clip-path: inset(0 50% 0 50%);
     transition: clip-path 0.3s ease-out;
+    scroll-behavior: auto;
+    overflow: scroll;
 }
 
 /* Logo */
 #logo {
-    position: absolute;
+    position: fixed;
     top: 20px;
     left: 20px;
     font-size: 110%;
     font-weight: bold;
+    transform: translateX;
 }
 
 /* Title */
@@ -48,8 +54,10 @@
     color: white;
     display: flex;
     font-size: 200%;
+    overflow: auto, scroll;
 }
-.name{
+
+.name {
     font-size: 300%;
     font-weight: 400;
     position: absolute;
@@ -64,13 +72,15 @@
     text-align: center;
     font-family: 'Bebas Neue', sans-serif;
     line-height: 0.9;
-    z-index: 0;
 }
-.location{
-    position: absolute;
-    bottom: 10%; 
-    left: 5%; 
-    font-family: 'Bebas Neue' , sans-serif;
+
+.location {
+    position: fixed;
+    bottom: 10%;
+    left: 5%;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 24px;
+    transform: translateX;
 }
 
 /* Custom Cursor */
@@ -78,22 +88,26 @@
     position: fixed;
     width: 18px;
     height: 18px;
-    background: yellow; /* Solid yellow color */
+    background: yellow;
+    /* Solid yellow color */
     border-radius: 50%;
-    pointer-events: none; /* Prevents interference */
+    pointer-events: none;
+    /* Prevents interference */
     transform: translate(-50%, -50%);
     z-index: 9999;
 }
+
 @media (max-width: 768px) {
     .cursor {
         display: none;
     }
 }
+
 #clock {
-    font-size: 24px;
+    font-size: 18px;
     font-weight: bold;
     font-family: monospace;
-    position: absolute;
+    position: fixed;
     top: 20px;
     right: 20px;
     background: black;
@@ -101,11 +115,13 @@
     padding: 10px 15px;
     border-radius: 5px;
     transition: all 0.3s ease;
+    TRANSFORM: translateX;
 }
 
 @media (max-width: 768px) {
     #clock {
-        font-size: 18px; /* Adjusts size for smaller screens */
+        font-size: 18px;
+        /* Adjusts size for smaller screens */
         top: 10px;
         right: 10px;
         padding: 8px 12px;
@@ -122,7 +138,8 @@
     background-color: yellow;
     border-radius: 50%;
     transition: transform 0.2s ease, border 0.2s ease;
-    z-index: 101; /* Higher than #cover (which has z-index: 100) */
+    z-index: 101;
+    /* Higher than #cover (which has z-index: 100) */
 }
 
 #middle-dot:hover {
@@ -130,6 +147,7 @@
     border: 4px solid black;
     background-color: white;
 }
+
 .social-icons1 {
     display: flex;
     gap: 15px;
@@ -138,6 +156,7 @@
     right: 2%;
     transform: translateX(-50%);
 }
+
 @media (max-width: 768px) {
     .social-icons1 {
         display: none;
@@ -164,6 +183,7 @@
     color: white;
     border: 2px solid grey;
 }
+
 /* Menu Overlay */
 #menu-overlay {
     position: fixed;
@@ -177,13 +197,14 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    font-size: 3rem;
+    font-size: 2.8rem;
     font-weight: bold;
     text-transform: uppercase;
     transition: opacity 0.3s ease, visibility 0.3s ease;
     opacity: 0;
     visibility: hidden;
-    z-index: 1000; /* Ensures it covers everything */
+    z-index: 1000;
+    /* Ensures it covers everything */
 }
 
 /* Show the menu */
@@ -195,12 +216,13 @@
 /* Menu Items */
 .menu-item {
     margin: 20px 0;
-    cursor: pointer;
-    transition: color 0.2s ease;
+    cursor: none;
+    transition: all .42s ease;
 }
 
 .menu-item:hover {
-    color: #cccccc;
+    color: yellow;
+    transform: scale(1.1);
 }
 
 /* Middle Dot / Close Button */
@@ -214,8 +236,9 @@
     background-color: yellow;
     border-radius: 50%;
     transition: transform 0.2s ease, border 0.2s ease;
-    z-index: 1100; /* Always stays on top */
-    cursor: pointer;
+    z-index: 1100;
+    /* Always stays on top */
+    cursor: none;
 }
 
 /* When Menu is Open, Middle Dot Turns into "X" */
@@ -225,7 +248,7 @@
     background: none;
     font-size: 2.5rem;
     font-weight: bold;
-    color: #cccccc;
+    color: yellow;
     border-radius: 0;
     transform: translateX(-50%) scale(1);
 }
@@ -236,9 +259,10 @@
         font-size: 2rem;
     }
 }
+
 /* For The Mini Description */
-.des{
-    font-size: 80%;
+.des {
+    font-size: 60%;
     font-weight: 200;
     position: absolute;
     top: 0;
@@ -250,6 +274,46 @@
     text-align: center;
     font-family: 'Bebas Neue', sans-serif;
     line-height: 0.9;
+    letter-spacing: -4;
     z-index: 0;
     top: 67%
 }
+
+.logo2 {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    font-size: 140%;
+    font-weight: 600;
+    z-index: 999;
+    font-family: 'Bebas Neue', sans-serif;
+    letter-spacing: 2.2px;
+    line-height: 0.9;
+}
+
+.tag {
+    top: 20%;
+    position: fixed;
+    align-items: center;
+    right: 40%;
+    left: 40%;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 610%;
+    font-weight: 900;
+    line-height: 1.3;
+    z-index: 110;
+    border-bottom: 1px solid black;
+}
+#gogi {
+    font-size: 3.7rem;
+    line-height: 0.9;
+    font-family: "Cedarville Cursive", cursive;
+}
+hr {
+    width: 80%;
+    margin-left: 10%;
+    border: none;
+    height: 2px;
+    background-color: black;
+  }
+  
