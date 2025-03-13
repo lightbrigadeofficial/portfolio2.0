@@ -306,14 +306,14 @@
 }
 @media screen and (max-width: 768px) {
     .tag {
-        font-size: 300%; /* Reduce font size for smaller screens */
+        font-size: 420%; /* Reduce font size for smaller screens */
         border-bottom: none; /* Optional: remove border on small screens */
     }
 }
 
 @media screen and (max-width: 480px) {
     .tag {
-        font-size: 200%;
+        font-size: 300%;
         white-space: normal; /* Allows text wrapping */
     }
 }
