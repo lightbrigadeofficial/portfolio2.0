@@ -292,18 +292,35 @@
 }
 
 .tag {
+    position: relative;
     top: 20%;
-    position: fixed;
-    align-items: center;
-    right: 40%;
-    left: 40%;
+    left: 50%;
+    transform: translateX(-50%);
     font-family: 'Bebas Neue', sans-serif;
     font-size: 610%;
     font-weight: 900;
     line-height: 1.3;
+    text-align: center;
     z-index: 110;
     border-bottom: 1px solid black;
+    white-space: nowrap;
 }
+
+/* Responsive Design for Smaller Screens */
+@media screen and (max-width: 768px) {
+    .tag {
+        font-size: 300%; /* Reduce font size for smaller screens */
+        border-bottom: none; /* Optional: remove border on small screens */
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .tag {
+        font-size: 200%;
+        white-space: normal; /* Allows text wrapping */
+    }
+}
+
 #gogi {
     font-size: 3.7rem;
     line-height: 0.9;
