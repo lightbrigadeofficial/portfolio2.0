@@ -98,3 +98,45 @@ window.addEventListener("wheel", (event) => {
 
     setTimeout(() => isScrolling = false, 700); // Adds a small delay to make it feel "resistant"
 }, { passive: false });
+
+// Smooth scrolling animation
+window.addEventListener("scroll", function() {
+    const scrollY = window.scrollY;
+    const animatedText = document.querySelector('.animated-text');
+    const line1 = document.querySelector('.line1');
+    const line2 = document.querySelector('.line2');
+
+    let progress, offset;
+
+    // Phase 1: Delayed Resistance Effect (scroll < 100)
+    if (scrollY < 100) {
+        // Exponential Decay Effect for Delay
+        let resistance = Math.exp(-scrollY / 50); // Decay factor
+        let rotation = 10 * resistance; // Delayed easing effect
+        let translation = 10 * resistance; // Slight movement delay
+
+        animatedText.style.transform = `translate(-50%, -50%) rotate(${rotation}deg)`;
+        line1.style.transform = `translateX(${translation}px)`;
+        line2.style.transform = `translateX(-${translation}px)`;
+    }
+    // Phase 2: Middle transition (100 - 300)
+    else if (scrollY >= 100 && scrollY < 300) {
+        progress = (scrollY - 100) / 200; // Normalized progress (0 to 1)
+        animatedText.style.transform = `translate(-50%, -50%) rotate(${ -25 + (25 * progress) }deg)`;
+
+        offset = progress * 20;
+        line1.style.transform = `translateX(${-offset}px)`;
+        line2.style.transform = `translateX(${offset}px)`;
+    }
+    // Phase 3: Final state (scroll >= 300)
+    else {
+        progress = Math.min((scrollY - 300) / 200, 1);
+        offset = 20 + progress * 20;
+
+        animatedText.style.transform = 'translate(-50%, -50%) rotate(-10deg)';
+        line1.style.transform = `translateX(${-offset}px)`;
+        line2.style.transform = `translateX(${offset}px)`;
+    }
+});
+
+  
