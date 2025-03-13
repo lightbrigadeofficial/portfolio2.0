@@ -285,7 +285,7 @@
 .logo2 {
     position: fixed;
     top: 20px;
-    left: 20px;
+    left: 16px;
     font-size: 140%;
     font-weight: 600;
     z-index: 999;
@@ -293,7 +293,7 @@
     letter-spacing: 2.2px;
     line-height: 0.9;
     background-color: white;
-    padding: 20px;
+    padding: 7px;
 }
 
 .tag {
