@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cedarville+Cursive&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cedarville+Cursive&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Tektur:wght@400..900&display=swap');
 
 /* Global Reset */
 * {
@@ -322,11 +322,23 @@
     line-height: 0.9;
     font-family: "Cedarville Cursive", cursive;
 }
-hr {
-    width: 80%;
-    margin-left: 10%;
-    border: none;
-    height: 2px;
-    background-color: black;
-  }
-  
+.aboutvandam{
+    font-family: 'Bebas Neue' , sans-serif;
+    font-size: 98%;
+    font-weight: 300;
+    letter-spacing: 0.8px;
+    margin-left: 25px;
+}
+.desvandam{
+    font-family: 'tektur' , sans-serif;
+    width: 25%;
+    height: auto;
+    margin-left: 25px;
+    font-weight: 400;
+    font-size: 75%;
+}
+.no01{
+    font-family: 'roboto mono' , monospace;
+    font-weight: 900;
+    font-size: 88%;
+}
