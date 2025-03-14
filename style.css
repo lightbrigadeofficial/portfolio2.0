@@ -392,13 +392,13 @@
 
 @media screen and (max-width: 768px) {
     .line {
-        font-size: 6.2rem;
+        font-size: 10rem;
     }
 }
 
 @media screen and (max-width: 480px) {
     .line {
-        font-size: 5.5rem;
+        font-size: 7rem;
         white-space: normal;
         /* Allows text wrapping */
     }
