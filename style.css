@@ -376,12 +376,13 @@
     transform-origin: center;
     text-align: center;
     transition: transform 0.5s ease-out;
-    z-index: 1000;
+    z-index: 999;
     width: 200%;
     height: 100vh;
     background-color: #111;
     color: white;
 }
+
 @media screen and (max-width: 768px) {
     .animated-text {
         top: 20%;
@@ -404,7 +405,7 @@
 
 @media screen and (max-width: 768px) {
     .line {
-        font-size: 7rem;
+        font-size: 6.7rem;
     }
 }
 
@@ -412,4 +413,93 @@
     .line {
         font-size: 4rem;
     }
+}
+
+.processclass {
+    padding-top: 20%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    /* Two equal columns */
+    gap: 10px;
+    padding-left: 35px;
+    padding-right: 35px;
+    z-index: 1000;
+}
+
+@media screen and (max-width: 768px) {
+    .processclass {
+        padding-top: 30%;
+        grid-template-columns: 1fr;
+    }
+
+    .processclass .card {
+        width: 100%;
+        justify-self: center;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .processclass {
+        padding-top: 30%;
+        grid-template-columns: 1fr;
+    }
+
+    .processclass .card {
+        width: 100%;
+        justify-self: center;
+    }
+}
+
+.card {
+    width: auto;
+    height: auto;
+    background: #EAEAEA;
+    padding: 25px 25px 25px 25px;
+    border-radius: 10px;
+    border: 1px solid #EDEDED;
+    border-right: 4.8px solid black;
+    border-bottom: 4px solid black;
+    position: relative;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card-number {
+    font-size: 18px;
+    font-weight: bold;
+    color: #555;
+    font-family: 'Roboto Mono', monospace;
+}
+
+.dots {
+    display: flex;
+    gap: 5px;
+}
+
+.dot {
+    width: 6px;
+    height: 6px;
+    background: #ccc;
+}
+
+.dot.active {
+    background: #000;
+}
+
+.card-text {
+    margin-top: 10px;
+    color: black;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 123%;
+    text-align: justify;
+}
+
+.gghead {
+    font-family: 'Bebas Neue', sans-serif;
+    font-weight: bold;
+    font-size: 130%;
 }
