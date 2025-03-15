@@ -375,7 +375,7 @@
     text-align: center;
     transition: transform 0.5s ease-out;
     z-index: 1000;
-    width: 100%;
+    width: 200%;
     height: 100vh;
     background-color: #111;
     color: white;
