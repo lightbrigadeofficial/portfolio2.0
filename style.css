@@ -6,20 +6,18 @@
     padding: 0;
     box-sizing: border-box;
     cursor: none;
-    overflow-x: hidden;
 }
 
 @media (max-width: 768px) {
     * {
         cursor: default;
-        overflow-x: hidden;
     }
 }
 
 /* Full Page Cover */
 #cover {
     position: fixed;
-    width: 100%;
+    width: 100vw;
     height: 100%;
     /*background-color: rgba(255, 255, 250, 0.97); Milky white */
     background-color: white;
@@ -30,7 +28,6 @@
     transition: clip-path 0.3s ease-out;
     scroll-behavior: auto;
     overflow-y: scroll;
-    overflow-x: hidden;
 }
 
 /* Logo */
@@ -407,7 +404,7 @@
     .line {
         font-size: 7rem;
         overflow-x: hidden;
-        width: 100%;
+        width: 100vw;
     }
 }
 
@@ -415,6 +412,6 @@
     .line {
         font-size: 4rem;
         overflow-x: hidden;
-        width: 100%;
+        width: 100vw;
     }
 }
