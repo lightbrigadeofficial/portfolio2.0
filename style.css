@@ -11,6 +11,7 @@
 @media (max-width: 768px) {
     * {
         cursor: default;
+        width: 100vw;
     }
 }
 
