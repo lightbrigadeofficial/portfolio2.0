@@ -139,4 +139,16 @@ window.addEventListener("scroll", function() {
     }
 });
 
-  
+// To warn the user
+window.onload = function() {
+    detectZoom();
+};
+
+function detectZoom() {
+    let zoomLevel = Math.round(window.devicePixelRatio * 100);
+    console.log("Current Zoom: " + zoomLevel + "%");
+
+    if (zoomLevel !== 100) {
+        alert("For the best experience, set your browser zoom to 100%");
+    }
+}
