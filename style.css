@@ -11,7 +11,7 @@
 @media (max-width: 768px) {
     * {
         cursor: default;
-        width: 100vw;
+
     }
 }
 
@@ -404,13 +404,11 @@
 @media screen and (max-width: 768px) {
     .line {
         font-size: 7rem;
-        width: 100vw;
     }
 }
 
 @media screen and (max-width: 480px) {
     .line {
         font-size: 4rem;
-        width: 100vw;
     }
 }
