@@ -146,9 +146,12 @@ window.onload = function() {
 
 function detectZoom() {
     let zoomLevel = Math.round(window.devicePixelRatio * 100);
-    console.log("Current Zoom: " + zoomLevel + "%");
+    let screenWidth = window.innerWidth;
 
-    if (zoomLevel !== 100) {
+    console.log("Current Zoom: " + zoomLevel + "%");
+    
+    // Exclude mobile devices (adjust width threshold if needed)
+    if (screenWidth > 768 && zoomLevel !== 100) { 
         alert("For the best experience, set your browser zoom to 100%");
     }
 }

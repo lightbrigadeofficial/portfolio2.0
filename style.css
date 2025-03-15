@@ -403,11 +403,13 @@
 @media screen and (max-width: 768px) {
     .line {
         font-size: 7rem;
+        max-width: 100%;
     }
 }
 
 @media screen and (max-width: 480px) {
     .line {
         font-size: 4rem;
+        max-width: 100%;
     }
 }
