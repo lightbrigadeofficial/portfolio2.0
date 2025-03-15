@@ -27,7 +27,7 @@
     clip-path: inset(0 50% 0 50%);
     transition: clip-path 0.3s ease-out;
     scroll-behavior: auto;
-    overflow: scroll;
+    overflow-y: scroll;
 }
 
 /* Logo */
@@ -375,7 +375,7 @@
     text-align: center;
     transition: transform 0.5s ease-out;
     z-index: 1000;
-    width: 200%;
+    width: 100%;
     height: 100vh;
     background-color: #111;
     color: white;
