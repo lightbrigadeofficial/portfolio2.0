@@ -139,7 +139,7 @@ window.addEventListener("scroll", function() {
     }
 });
 
-// To warn the user
+// To warn the user about zoom aspect
 window.onload = function() {
     detectZoom();
 };
@@ -155,3 +155,8 @@ function detectZoom() {
         alert("For the best experience, set your browser zoom to 100%");
     }
 }
+
+//To prevent horizontal scrolling
+window.addEventListener("resize", function() {
+    document.body.style.width = window.innerWidth + "px";
+});
