@@ -11,6 +11,8 @@
 @media (max-width: 768px) {
     * {
         cursor: default;
+        overflow-x: hidden;
+        width: 100
     }
 }
 
