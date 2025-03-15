@@ -404,7 +404,6 @@
 @media screen and (max-width: 768px) {
     .line {
         font-size: 7rem;
-        overflow-x: hidden;
         width: 100vw;
     }
 }
@@ -412,7 +411,6 @@
 @media screen and (max-width: 480px) {
     .line {
         font-size: 4rem;
-        overflow-x: hidden;
         width: 100vw;
     }
 }
