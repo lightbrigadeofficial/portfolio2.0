@@ -403,13 +403,17 @@
 @media screen and (max-width: 768px) {
     .line {
         font-size: 7rem;
-        max-width: 100%;
+        max-width: 1200px; /* Limits width on large screens */
+        margin: 0 auto; /* Centers the content */
+        padding: 0 15px; /* Adds space on smaller screens */
     }
 }
 
 @media screen and (max-width: 480px) {
     .line {
         font-size: 4rem;
-        max-width: 100%;
+        max-width: 1200px; /* Limits width on large screens */
+        margin: 0 auto; /* Centers the content */
+        padding: 0 15px; /* Adds space on smaller screens */
     }
 }
