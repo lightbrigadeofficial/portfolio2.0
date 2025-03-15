@@ -404,7 +404,7 @@
     .line {
         font-size: 7rem;
         overflow-x: hidden;
-        width:max-content%;
+        width: 100%;
     }
 }
 
@@ -412,6 +412,6 @@
     .line {
         font-size: 4rem;
         overflow-x: hidden;
-        width: max-content;
+        width: 100%;
     }
 }
