@@ -402,12 +402,12 @@
 
 @media screen and (max-width: 768px) {
     .line {
-        font-size: 10rem;
+        font-size: 7rem;
     }
 }
 
 @media screen and (max-width: 480px) {
     .line {
-        font-size: 7rem;
+        font-size: 4rem;
     }
 }
