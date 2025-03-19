@@ -285,12 +285,12 @@
 }
 
 .logo2 {
-    position: fixed;
+    position: sticky;
     top: 20px;
     left: 16px;
     font-size: 140%;
     font-weight: 600;
-    z-index: 999;
+    z-index: 9999;
     font-family: 'Bebas Neue', sans-serif;
     letter-spacing: 2.2px;
     line-height: 0.9;
