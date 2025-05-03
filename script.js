@@ -12,22 +12,9 @@ window.addEventListener("scroll", () => {
 });
 
 // Set the scroll speed resistance factor (lower value = more resistance)
-let scrollSpeed = 0.9; 
+let scrollSpeed = 0.1; 
 
-// Listen for mouse wheel scroll events
-window.addEventListener("wheel", function (event) {
-    let atBottom = (window.innerHeight + window.scrollY) >= document.body.scrollHeight;
-    let atTop = window.scrollY === 0;
-    
-    // Only prevent default scrolling when not at the top or bottom
-    if (!atBottom && !atTop) {
-        event.preventDefault();
-        window.scrollBy({
-            top: event.deltaY * scrollSpeed, // Adjusts the scroll movement based on speed factor
-            behavior: "smooth" // Enables smooth scrolling
-        });
-    }
-}, { passive: false }); // Ensures preventDefault() works on some browsers
+
 
 // Customizing cursor to be translucent and round
 document.addEventListener("DOMContentLoaded", function () {
@@ -83,24 +70,25 @@ middleDot.addEventListener("click", function () {
 
 //
 let isScrolling = false;
+
 window.addEventListener("wheel", (event) => {
     if (isScrolling) return;
     isScrolling = true;
 
-    let sections = document.querySelectorAll(".section");
-    let currentSection = [...sections].findIndex(sec => sec.getBoundingClientRect().top >= 0);
-    
+    const sections = document.querySelectorAll(".section");
+    const currentSection = [...sections].findIndex(sec => sec.getBoundingClientRect().top >= 0);
+
     if (event.deltaY > 0 && currentSection < sections.length - 1) {
         sections[currentSection + 1].scrollIntoView({ behavior: "smooth" });
     } else if (event.deltaY < 0 && currentSection > 0) {
         sections[currentSection - 1].scrollIntoView({ behavior: "smooth" });
     }
 
-    setTimeout(() => isScrolling = false, 700); // Adds a small delay to make it feel "resistant"
+    setTimeout(() => isScrolling = false, 700); // Prevents rapid scroll jumps
 }, { passive: false });
 
-// Smooth scrolling animation
-window.addEventListener("scroll", function() {
+// Smooth animation on scroll
+window.addEventListener("scroll", () => {
     const scrollY = window.scrollY;
     const animatedText = document.querySelector('.animated-text');
     const line1 = document.querySelector('.line1');
@@ -108,36 +96,36 @@ window.addEventListener("scroll", function() {
 
     let progress, offset;
 
-    // Phase 1: Delayed Resistance Effect (scroll < 100)
+    // Phase 1: Gentle effect when scrollY < 100
     if (scrollY < 100) {
-        // Exponential Decay Effect for Delay
-        let resistance = Math.exp(-scrollY / 50); // Decay factor
-        let rotation = 10 * resistance; // Delayed easing effect
-        let translation = 10 * resistance; // Slight movement delay
+        const factor = (100 - scrollY) / 100; // 1 to 0
+        const rotation = 10 * factor;         // Reduced rotation
+        const translation = 10 * factor;
 
         animatedText.style.transform = `translate(-50%, -50%) rotate(${rotation}deg)`;
         line1.style.transform = `translateX(${translation}px)`;
         line2.style.transform = `translateX(-${translation}px)`;
     }
-    // Phase 2: Middle transition (100 - 300)
-    else if (scrollY >= 100 && scrollY < 300) {
-        progress = (scrollY - 100) / 200; // Normalized progress (0 to 1)
-        animatedText.style.transform = `translate(-50%, -50%) rotate(${ -25 + (25 * progress) }deg)`;
 
+    // Phase 2: Transition between 100 and 300
+    else if (scrollY >= 100 && scrollY < 101) {
+        progress = (scrollY - 100) / 200; // Progress: 0 to 1
+        const rotation = -25 + (25 * progress);
         offset = progress * 20;
+
+        animatedText.style.transform = `translate(-50%, -50%) rotate(${rotation}deg)`;
         line1.style.transform = `translateX(${-offset}px)`;
         line2.style.transform = `translateX(${offset}px)`;
     }
-    // Phase 3: Final state (scroll >= 300)
-    else {
-        progress = Math.min((scrollY - 300) / 200, 1);
-        offset = 20 + progress * 20;
 
-        animatedText.style.transform = 'translate(-50%, -50%) rotate(-10deg)';
-        line1.style.transform = `translateX(${-offset}px)`;
-        line2.style.transform = `translateX(${offset}px)`;
+    // Phase 3: Fixed end-state when scrollY >= 300
+    else {
+        animatedText.style.transform = `translate(-50%, -50%) rotate(0deg)`;
+        line1.style.transform = `translateX(-20px)`;
+        line2.style.transform = `translateX(20px)`;
     }
 });
+
 
 // To warn the user about zoom aspect
 window.onload = function() {
@@ -154,4 +142,82 @@ function detectZoom() {
     if (screenWidth > 768 && zoomLevel !== 100) { 
         alert("For the best experience, set your browser zoom to 100%");
     }
+}
+
+////
+  const tag = document.getElementById("slimeTag");
+
+  document.addEventListener("mousemove", (e) => {
+    const rect = tag.getBoundingClientRect();
+    const centerX = rect.left + rect.width / 2;
+    const centerY = rect.top + rect.height / 2;
+
+    const deltaX = e.clientX - centerX;
+    const deltaY = e.clientY - centerY;
+
+    // Scale down the movement for a "slimey" lag
+    const movementX = deltaX * 0.02;
+    const movementY = deltaY * 0.02;
+
+    tag.style.transform = `translate(${movementX}px, ${movementY}px)`;
+  });
+
+  document.addEventListener("mouseleave", () => {
+    tag.style.transform = `translate(0px, 0px)`;
+  });
+
+//Scroll-triggered Sequential Fade-in Animation for boutme//
+document.addEventListener('DOMContentLoaded', () => {
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            const container = entry.target;
+            if (entry.isIntersecting) {
+                const items = container.querySelectorAll('.animate-item');
+                items.forEach((item, i) => {
+                    // Reset animation
+                    item.classList.remove('show');
+                    void item.offsetWidth; // Trigger reflow
+                    item.style.animationDelay = `${i * 0.6}s`;
+                    item.classList.add('show');
+                });
+            } else {
+                const items = container.querySelectorAll('.animate-item');
+                items.forEach(item => {
+                    item.classList.remove('show');
+                });
+            }
+        });
+    }, { threshold: 0.5 });
+
+    observer.observe(document.querySelector('#boutme'));
+});
+//EMAIID//
+let originalEmail = "HYEONTEAM23@GMAIL.COM";
+let glitchTexts = ["#31/@$f", "$!Q27$#", "B$%@#V23", "!$%gT3", "7f6@w1L"];
+let glitchInterval;
+let currentGlitchIndex = 0;
+
+function startGlitch() {
+    let emailElement = document.getElementById("email");
+    emailElement.classList.add("glitch");
+    glitchInterval = setInterval(() => {
+        emailElement.textContent = glitchTexts[currentGlitchIndex];
+        currentGlitchIndex = (currentGlitchIndex + 1) % glitchTexts.length;
+    }, 100);
+}
+
+function resetText() {
+    clearInterval(glitchInterval); // Stop the glitch effect
+    let emailElement = document.getElementById("email");
+    emailElement.classList.remove("glitch");
+    emailElement.textContent = originalEmail; // Return to the original email
+}
+
+function copyEmail() {
+    const email = "hyeonteam23@gmail.com"; // Store the email in lowercase
+    navigator.clipboard.writeText(email).then(() => {
+        alert("Email copied: " + email);  // Email copied in lowercase
+    }).catch(err => {
+        console.error("Failed to copy: ", err);
+    });
 }
