@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VANDAM'S RESUME</title>
+    <link rel="stylesheet" href="style.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="icon" href="favicon.jpeg" type="image/png">
+</head>
+<body>
+    <div class="cursor"></div>
+      <iframe class="pdf-container" src="resume.pdf#toolbar=0"></iframe>
+    <script>
+        // Customizing cursor to be translucent and round
+document.addEventListener("DOMContentLoaded", function () {
+    const cursor = document.createElement("div");
+    cursor.classList.add("cursor");
+    document.body.appendChild(cursor);
+
+    let posX = 0, posY = 0; // Current cursor position
+    let targetX = 0, targetY = 0; // Target cursor position
+    const resistance = 0.1; // Adjust for more/less resistance
+
+    document.addEventListener("mousemove", function (e) {
+        targetX = e.clientX;
+        targetY = e.clientY;
+    });
+
+    function animateCursor() {
+        posX += (targetX - posX) * resistance;
+        posY += (targetY - posY) * resistance;
+        cursor.style.left = `${posX}px`;
+        cursor.style.top = `${posY}px`;
+        requestAnimationFrame(animateCursor);
+    }
+
+    animateCursor();
+});
+    </script>
+</body>
+</html>

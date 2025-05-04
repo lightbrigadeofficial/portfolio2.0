@@ -1280,3 +1280,14 @@
         }
     }
 }
+.action-text::before {
+    content: "< Click >";
+  }
+  
+  /* Change to < Hold > on smaller screens (like mobile) */
+  @media (max-width: 768px) {
+    .action-text::before {
+      content: "< Hold >";
+    }
+  }
+  
