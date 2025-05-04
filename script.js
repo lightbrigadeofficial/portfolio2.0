@@ -168,15 +168,16 @@ function detectZoom() {
 
 //Scroll-triggered Sequential Fade-in Animation for boutme//
 document.addEventListener('DOMContentLoaded', () => {
+    if (window.innerWidth <= 768) return; // Disable animation on mobile
+
     const observer = new IntersectionObserver(entries => {
         entries.forEach(entry => {
             const container = entry.target;
             if (entry.isIntersecting) {
                 const items = container.querySelectorAll('.animate-item');
                 items.forEach((item, i) => {
-                    // Reset animation
                     item.classList.remove('show');
-                    void item.offsetWidth; // Trigger reflow
+                    void item.offsetWidth;
                     item.style.animationDelay = `${i * 0.6}s`;
                     item.classList.add('show');
                 });
@@ -191,6 +192,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     observer.observe(document.querySelector('#boutme'));
 });
+
 //EMAIID//
 let originalEmail = "HYEONTEAM23@GMAIL.COM";
 let glitchTexts = ["#31/@$f", "$!Q27$#", "B$%@#V23", "!$%gT3", "7f6@w1L"];
