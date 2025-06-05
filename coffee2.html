@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en" class="transition duration-300">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Buy Me a Coffee – Vandam</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href='https://cdn.boxicons.com/fonts/basic/boxicons.min.css' rel='stylesheet'>
+    <link rel="icon" href="favicon.jpeg" type="image/png">
+    <meta name="google-site-verification" content="fj48ATWIWBdTymIHANc-XosXP6nbp6B0PFY0iqc1qBo" />
+</head>
+
+<body
+    class="bg-[#fdf6f0] text-[#333] font-sans min-h-screen flex items-center justify-center p-4 dark:bg-[#1a1a1a] dark:text-white">
+    <div class="absolute top-4 right-4">
+        <button id="themeToggle" class="text-2xl"></button>
+    </div>
+
+    <div
+        class="max-w-5xl w-full bg-white dark:bg-[#2a2a2a] rounded-3xl shadow-2xl overflow-hidden grid grid-cols-1 md:grid-cols-2">
+        <!-- Left: Personal Info -->
+        <div class="p-8 bg-[#ffddc3] dark:bg-[#3b3b3b] flex flex-col justify-center">
+            <div class="flex items-center mb-4">
+                <svg class="w-8 h-8 mr-2 animate-bounce" viewBox="0 0 512 512" fill="currentColor">
+                    <path
+                        d="M410.3 136.4c4.7-13.8-7.5-26.7-21.5-23.2C342 125.4 275.8 124.2 223 117c-46.7-6.2-80.2-14.4-105-27.4-10.2-5.3-23 2.4-22.5 13.9 2.6 55.5-6.7 114.7-33.5 178.1C43 327.3 97.6 377.5 142.4 360.7c38.5-14.5 76-18.5 108.1-15.6 48.8 4.5 93.3 24.8 122.2 56.3 7.7 8.3 21.2 5.7 25-4.9 14.1-39.2 22.5-80.9 25.1-125.3 2.6-43.9-3.4-91.7-12.5-134.8z" />
+                </svg>
+                <h1 class="text-3xl font-bold">Hey, I'm Vandam 👋</h1>
+            </div>
+            <p class="text-lg mb-4">You if you enjoyed and liked my work, buy me a coffee! <i
+                    class='bx  bx-coffee-cup'></i></p>
+            <p class="mb-6">If you like my work, consider supporting me. Every bit helps me keep creating and sharing!
+            </p>
+            <p class="text-sm text-[#444] dark:text-gray-300">Thanks for being awesome and being around here! </p>
+        </div>
+
+        <!-- Right: QR and UPI ID -->
+        <div class="p-8 flex flex-col justify-center items-center text-center bg-[#fffaf5] dark:bg-[#1e1e1e]">
+            <h2 class="text-xl font-semibold mb-4">Support Me</h2>
+            <img src="705599c1-fdaf-4c41-9606-226bf63583ad.jpeg" alt="Scan to Pay"
+                class="w-40 h-40 mb-4 rounded-md border dark:border-gray-600" />
+            <p class="mb-2 text-sm">Scan the QR code or use UPI:</p>
+            <div class="flex items-center gap-2 mb-4">
+                <code id="upiText"
+                    class="bg-gray-100 dark:bg-gray-700 px-3 py-1 rounded font-mono text-sm">8822675694@fampay</code>
+                <button id="copyBtn"
+                    class="bg-yellow-400 hover:bg-yellow-300 text-black px-2 py-1 rounded text-sm">Copy</button>
+            </div>
+            <form action="https://formspree.io/f/xldndagv" method="POST" class="space-y-3">
+                <input type="text" name="nameofsender" id="nameofsender" required
+                class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                placeholder="Lisa Thomas" />
+                <input type="email" name="email" id="email" required
+                    class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    placeholder="you@example.com" />
+                <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+                    Send The <i class='bx  bx-coffee-cup'></i> →
+                </button>
+            </form><br>
+            <p class="text-xs text-gray-500 dark:text-gray-400">Supports all UPI apps – GPay, Paytm, PhonePe etc.</p>
+            <p class="text-xs text-gray-500 dark:text-gray-400"><i>Powered by Fampay</i></p>
+        </div>
+    </div>
+
+    <!-- Thank You Modal -->
+    <div id="thankModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center">
+        <div class="bg-white dark:bg-[#2c2c2c] text-center p-6 rounded-xl shadow-xl">
+            <h3 class="text-2xl font-semibold mb-2">Thank You! 🙏</h3>
+            <p class="text-sm">Your support means the world to me.</p>
+            <button id="closeModal"
+                class="mt-4 bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded">Close</button>
+        </div>
+    </div>
+
+    <script>
+        const toggle = document.getElementById("themeToggle");
+        const html = document.documentElement;
+        const copyBtn = document.getElementById("copyBtn");
+        const upiText = document.getElementById("upiText");
+        const thankBtn = document.getElementById("thankBtn");
+        const thankModal = document.getElementById("thankModal");
+        const closeModal = document.getElementById("closeModal");
+
+        toggle.addEventListener("click", () => {
+            html.classList.toggle("dark");
+            toggle.textContent = html.classList.contains("dark") ? "☀️" : "🌙";
+        });
+
+        copyBtn.addEventListener("click", () => {
+            navigator.clipboard.writeText(upiText.textContent).then(() => {
+                copyBtn.textContent = "Copied!";
+                setTimeout(() => (copyBtn.textContent = "Copy"), 1500);
+            });
+        });
+
+        thankBtn.addEventListener("click", () => {
+            thankModal.classList.remove("hidden");
+            thankModal.classList.add("flex");
+        });
+
+        closeModal.addEventListener("click", () => {
+            thankModal.classList.add("hidden");
+            thankModal.classList.remove("flex");
+        });
+    </script>
+</body>
+
+</html>
